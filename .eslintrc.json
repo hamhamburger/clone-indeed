@@ -20,7 +20,11 @@
     ],
     "rules": {
       "react/jsx-uses-react": "off",
-      "react/react-in-jsx-scope": "off"
-      "@typescript-eslint/consistent-type-definitions": "off"
+      "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+    },
+    "settings": {
+        "import/resolver":"typescript"
     }
       }
