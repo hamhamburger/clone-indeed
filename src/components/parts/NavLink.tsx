@@ -1,5 +1,5 @@
 import React from 'react'
-import { jsx,css } from "@emotion/react"
+import { css } from "@emotion/react"
 
 
 
@@ -20,7 +20,7 @@ type Props = {
   selected: boolean
 }
 
-const NavLink = ({title,link}:Props) => {
+const NavLink = ({title,link}:Props):JSX.Element => {
   return (
     <span>
       <a href={link} css={Style}>
