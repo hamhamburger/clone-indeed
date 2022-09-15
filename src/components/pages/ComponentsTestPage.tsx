@@ -1,47 +1,16 @@
 import { css } from '@emotion/react';
-import React from 'react';
+import React,{useState} from 'react';
 import Header from '../parts/Header';
 import SearchForm from '../templates/SearchForm';
 
-const conditionSelectData = [
-  {
-    title: '掲載日',
-    data: [
-      { key: '24時間以内', value: '24h' },
-      { key: '3日以内', value: '3d' },
-    ],
-  },
-  {
-    title: '年収',
-    data: [
-      { key: '200万円以内', value: '200' },
-      { key: '300万円以内', value: '300' },
-    ],
-  },
-  {
-    title: '雇用形態',
-    data: [
-      { key: '正社員', value: 'employee' },
-      { key: 'アルバイト', value: 'part-time' },
-    ],
-  },
-  {
-    title: '勤務地',
-    data: [
-      { key: '東京', value: 'tokyo' },
-      { key: '大阪', value: 'oosaka' },
-    ],
-  },
-  {
-    title: '会社名',
-    data: [
-      { key: '株式会社A', value: 'A' },
-      { key: '株式会社B', value: 'B' },
-    ],
-  },
-];
+import areaConditionData from '../../lib/areaConditionData.js';
+import SelectBox from '../parts/SelectBox';
+const keywordList = ['お寿司', '焼肉'];
 
+const conditionSelectData = [areaConditionData];
+console.log(areaConditionData);
 const ComponentsTestPage = (): JSX.Element => {
+  const [selectValue, setSelectValue] = useState("")
   return (
     <div>
       <Header />
@@ -52,7 +21,11 @@ const ComponentsTestPage = (): JSX.Element => {
           marginLeft: 'auto',
           marginRight: 'auto',
         })}
+        handleSubmit={() => {
+          console.log();
+        }}
       />
+      <SelectBox onChange={(e) => setSelectValue(e.target.value)} value={selectValue} label="エリア" options={areaConditionData.data} />
     </div>
   );
 };
