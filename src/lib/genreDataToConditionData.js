@@ -3,7 +3,7 @@ function genreDataToConditionData(obj) {
   const ConditionData = { title: 'genre', data: [] };
 
   obj.results.genre.forEach((genre) => {
-    const newObj = { key: genre.code, value: genre.name };
+    const newObj = { value: genre.code, key: genre.name };
     ConditionData.data.push(newObj);
   });
   return ConditionData;

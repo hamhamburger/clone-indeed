@@ -8,10 +8,10 @@ import {
   UnpackNestedValue,
   useForm,
 } from 'react-hook-form';
-import { FormInput } from '../types';
+import { FormInput, FormName } from '../types';
 import AreaSelectRHF from '../parts/AreaSelectRHF';
 import NameInputRHF from '../parts/NameInputRHF';
-
+import SelectBoxRHF from '../parts/SelectBoxRHF';
 
 const SearchButtonStyle = css({
   backgroundColor: 'lightblue',
@@ -24,6 +24,7 @@ const keywordList = ['お寿司', '焼肉'];
 
 type conditionData = {
   title: string;
+  name: string;
   data: Array<{
     key: string;
     value: string;
@@ -36,7 +37,7 @@ type Props = {
 
 
 const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
-  const { control, handleSubmit　, setValue } = useForm<FormInput>();
+  const { control, handleSubmit, setValue } = useForm<FormInput>();
 
   const printWithData = (data: UnpackNestedValue<FormInput>): void => {
     console.log('dataによる取り出し');
@@ -74,10 +75,11 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
           {conditionSelectList.map((condition) => {
             return (
               <Col span={4} key={condition.title} css={css({ margin: '3px' })}>
-                <AreaSelectRHF
+                <SelectBoxRHF
+                  name={condition.name as FormName}
                   control={control}
                   options={condition.data}
-                  label='エリア'
+                  label={condition.title}
                 />
               </Col>
             );
