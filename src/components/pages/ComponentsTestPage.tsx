@@ -5,7 +5,7 @@ import SearchForm from '../templates/SearchForm';
 
 import areaConditionData from '../../lib/areaConditionData.js';
 import SelectBox from '../parts/SelectBox';
-const keywordList = ['お寿司', '焼肉'];
+
 
 const conditionSelectData = [areaConditionData];
 console.log(areaConditionData);

@@ -10,7 +10,7 @@ type Props = {
   children: JSX.Element;
 };
 
-const SelectableInputRHF = ({
+const NameInputRHF = ({
   control,
   title,
   placeholder,
@@ -25,8 +25,9 @@ const SelectableInputRHF = ({
       rules={{ required: { value: true, message: '入力必須です' } }}
       render={({ field, fieldState: { error } }) => (
         // const {onChange} = field
-        <SelectableInput {...field} 
-        title={title} 
+        <SelectableInput
+          {...field} 
+          title={title} 
           placeholder={placeholder}
           options={options}>
           {children}
@@ -36,4 +37,4 @@ const SelectableInputRHF = ({
   );
 };
 
-export default SelectableInputRHF;
+export default NameInputRHF;

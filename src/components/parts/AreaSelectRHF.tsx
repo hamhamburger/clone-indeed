@@ -9,10 +9,10 @@ type Props = {
   control: Control<FormInput>;
 
   options: Array<{ key: string, value: string }>;
-
+  label?: string;
 };
 
-const AreaInputRHF = ({ control,options}: Props): JSX.Element => {
+const AreaSelectRHF = ({ control,options,label}: Props): JSX.Element => {
   return (
     <Controller
       control={control}
@@ -23,11 +23,13 @@ const AreaInputRHF = ({ control,options}: Props): JSX.Element => {
         // const {onChange} = field
         <SelectBox
           {...field}
-          options={options} />
+          options={options}
+          label={label}
+        />
 
       )}
     />
   );
 };
 
-export default AreaInputRHF;
+export default AreaSelectRHF;
