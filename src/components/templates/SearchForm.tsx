@@ -90,7 +90,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
           control={control}
           name="name"
           onInputChange={(e, newValue) => {
-            setValue('keyword', newValue);
+            setValue('name', newValue);
           }}
         >
           <SearchIcon sx={{ width: '18px' }} />

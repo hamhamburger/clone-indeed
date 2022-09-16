@@ -8,7 +8,7 @@ type Props = {
   control: Control<FormInput>;
   title: string;
   placeholder: string;
-  options: string[];
+  options?: string[];
   children: JSX.Element;
   name: FormName;
   onInputChange?: (
@@ -24,6 +24,7 @@ const SelectableInputRHF = ({
   placeholder,
   options,
   children,
+  name,
   onInputChange
 
 }: Props): JSX.Element => {
