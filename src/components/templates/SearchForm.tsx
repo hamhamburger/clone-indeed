@@ -5,7 +5,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Col, Row} from 'antd';
 import {
   SubmitHandler,
-  UnpackNestedValue,
   useForm,
 } from 'react-hook-form';
 import { FormInput, FormName } from '../types';
@@ -27,8 +26,8 @@ const SearchButtonStyle = {
 
 const keywordList = ['お寿司', '焼肉'];
 
-const APIKEY = '';
-const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
+// const APIKEY = '';
+// const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
 
 type conditionData = {
   title: string;
@@ -49,7 +48,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
   const { control, handleSubmit, setValue } = useForm<FormInput>();
 
 
-  const search = async (data):Promise<void> => {
+  const search = async (data:any):Promise<void> => {
     // const query = new URLSearchParams({ ...data, key: APIKEY });
     // const response = await fetch(
     //   `${BASEURL}?${query}`,
@@ -69,8 +68,9 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
 
   return (
-    <Box sx={{ maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+   
+    <form onSubmit={handleSubmit(onSubmit)}>
+       <Box  sx={{ maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' ,display: "grid",rowGap:"15px"}}>
         <SelectableInputRHF
           title='キーワード'
           placeholder='住所、駅名、お店ジャンルキャッチ、キャッチ'
@@ -113,8 +113,9 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
             );
           })}
         </Row>
+        </Box>
       </form>
-    </Box>
+  
   );
 };
 
