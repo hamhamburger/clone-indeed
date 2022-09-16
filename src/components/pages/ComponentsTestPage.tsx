@@ -4,12 +4,13 @@ import Header from '../parts/Header';
 import SearchForm from '../templates/SearchForm';
 import { FaGithub } from 'react-icons/fa';
 import areaConditionData from '../../lib/areaConditionData.js';
-import SelectableInput from '../parts/SelectableInput';
+
+import genreConditionData from '../../lib/genreConditionData.js';
 
 
 const keywordList = ['お寿司', '焼肉'];
 
-const conditionSelectData = [areaConditionData];
+const conditionSelectData = [areaConditionData,genreConditionData];
 console.log(areaConditionData);
 const ComponentsTestPage = (): JSX.Element => {
   const [selectValue, setSelectValue] = useState("")
