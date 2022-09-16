@@ -1,5 +1,6 @@
 const areaConditionData = {
   title: 'エリア',
+  name:"area",
   data: [
     { value: 'SA11', key: '東京' },
     { value: 'SA12', key: '神奈川' },

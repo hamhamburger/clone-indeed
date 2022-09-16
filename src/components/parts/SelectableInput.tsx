@@ -1,85 +1,93 @@
-// こっちのコンポーネントはUIライブラリなしで作ったものです
-
-import React, { useState, useRef, useEffect } from 'react';
-import { css } from '@emotion/react';
-import InputWithTitle from './InputWithTitle';
+import {TextField,Box,Typography} from '@mui/material';
+import Autocomplete, { AutocompleteInputChangeReason } from '@mui/material/Autocomplete';
+import { JSX } from '@emotion/react/jsx-runtime';
+import { SyntheticEvent } from 'react';
 
 type Props = {
   title: string;
   placeholder: string;
+  options?: string[];
   children: JSX.Element;
-  options: string[];
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelect?: () => void;
+  onBlur?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onInputChange?: (
+    event: SyntheticEvent<Element, Event>,
+    value: string,
+    reason: AutocompleteInputChangeReason,
+  ) => void;
+  field?: any;
 };
 
-const Style = css({
-  border: '1px solid',
-  borderRadius: '0.5rem',
-  padding: '10px',
-  position: 'relative',
-});
 
 const SelectableInput = ({
   title,
   placeholder,
-  children,
   options,
+  children,
+  onSelect,
+  onBlur,
   onChange,
+  field,
+  onInputChange
 }: Props): JSX.Element => {
-  const [expanded, setExpanded] = useState<boolean>(false);
-  const [value, setValue] = useState<string>('');
-  const insideRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = insideRef.current;
-    if (el === undefined) return;
-
-    const handleClickOutside = (e: MouseEvent): void => {
-      if (!(el?.contains(e.target as Node) ?? false)) {
-        setExpanded(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-    // ここの実装は https://hirakublog.com/react-click-outside/を参考にさせていただきました
-  }, [insideRef]);
 
   return (
-    <div css={Style} ref={insideRef}>
-      <InputWithTitle
-        title={title}
-        placeholder={placeholder}
-        onSelect={() => setExpanded(true)}
-        onChange={onChange}
-        valueFromParent={value}
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        border: '1px solid',
+        borderRadius: '0.5rem',
+        padding: '10px',
+      }}
+    >
+      <Typography
+        variant='subtitle2'
+        sx={{
+          marginLeft: '10px',
+
+          paddingRight:"1rem",
+          color: '#2d2d2d',
+          fontSize: '.875rem',
+          fontWeight: '700',
+        }}
       >
-        {children}
-      </InputWithTitle>
-      <div className='list' css={css({ position: 'relative', zIndex: '2' })}>
-        {expanded ? (
-          options?.map((value) => {
-            return (
-              <div
-                key={value}
-                css={css({
-                  ':hover': { backgroundColor: 'lightblue' },
-                })}
-                onClick={() => {
-                  setValue(value);
-                  setExpanded(false);
-                }}
-              >
-                {value}
-              </div>
-            );
-          })
-        ) : (
-          <></>
+        {title}
+      </Typography>
+      <Autocomplete
+        sx={{
+          display: 'block',
+          flex: 'auto',
+          height: '30px',
+        }}
+        freeSolo
+        onInputChange={onInputChange}
+        options={(options !== undefined) ? options : []}
+        renderInput={(params) => (
+          <TextField
+            name={field.name}
+            ref={field.ref}
+            value={field.value}
+            variant='standard'
+            sx={{
+              border: '0',
+              height: '30px',
+              outline: 'none',
+              '& .MuiInput-root': {
+                '&:before, :after, :hover:not(.Mui-disabled):before': {
+                  borderBottom: 0,
+                },
+              },
+            }}
+            placeholder={placeholder}
+            {...params}
+          />
         )}
-      </div>
-    </div>
+      />
+      {children}
+    </Box>
   );
 };
 

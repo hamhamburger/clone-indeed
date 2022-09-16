@@ -1,24 +1,24 @@
 import { Controller, Control } from 'react-hook-form';
 
-import { FormInput } from '../types'
+import { FormInput, FormName } from '../types'
 import SelectBox from './SelectBox';
 
 
 
 type Props = {
   control: Control<FormInput>;
-
+  name: FormName
   options: Array<{ key: string, value: string }>;
   label?: string;
 };
 
-const AreaSelectRHF = ({ control,options,label}: Props): JSX.Element => {
+const SelectBoxRHF = ({ control,options,label,name}: Props): JSX.Element => {
   return (
     <Controller
       control={control}
-      name='area'
-      defaultValue={'SA11'}
-      rules={{ required: { value: true, message: '入力必須です' } }}
+      name={name}
+      defaultValue=""
+      // rules={{ required: { value: true, message: '入力必須です' } }}
       render={({ field, fieldState: { error } }) => (
         // const {onChange} = field
         <SelectBox
@@ -34,4 +34,4 @@ const AreaSelectRHF = ({ control,options,label}: Props): JSX.Element => {
   );
 };
 
-export default AreaSelectRHF;
+export default SelectBoxRHF;
