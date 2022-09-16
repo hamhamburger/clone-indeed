@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import React from 'react';
 import SelectableInput from '../parts/SelectableInput';
 import { FaGithub } from 'react-icons/fa';
-import { Button, Col, Row, Select } from 'antd';
+import { Button, Col, Row} from 'antd';
 
 import {
   SubmitHandler,
@@ -14,7 +14,7 @@ import {
 import { FormInput } from '../types';
 import AreaSelectRHF from '../parts/AreaSelectRHF';
 import NameInputRHF from '../parts/NameInputRHF';
-const { Option } = Select;
+
 
 const SearchButtonStyle = css({
   backgroundColor: 'lightblue',
@@ -22,11 +22,6 @@ const SearchButtonStyle = css({
   borderRadius: '0.5rem',
 });
 
-const ConditionSelectStyle = css({
-  borderRadius: '0.5rem',
-  padding: '15px, 15px 20px 20px',
-  display: 'block',
-});
 
 const keywordList = ['お寿司', '焼肉'];
 
@@ -49,7 +44,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
   const printWithData = (data: UnpackNestedValue<FormInput>): void => {
     console.log('dataによる取り出し');
     const { keyword, area } = data;
-    console.log(`area ${area}`);
+    console.log(`area ${area} keword ${keyword}`);
   };
 
   const onSubmit: SubmitHandler<FormInput> = (data) => {
@@ -59,14 +54,14 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <SelectableInput
+        <NameInputRHF
           title='キーワード'
           placeholder='職種、キーワード、会社名など'
           options={keywordList}
-          onChange={(e) => console.log(e)}
+          control={control}
         >
           <FaGithub />
-        </SelectableInput>
+        </NameInputRHF>
 
         <Button block={true} htmlType='submit' css={SearchButtonStyle}>
           求人検索
