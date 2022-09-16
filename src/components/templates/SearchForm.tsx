@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { css } from '@emotion/react';
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
-import { Button, Col, Row} from 'antd';
+import SearchIcon from '@mui/icons-material/Search';
+import { Col, Row} from 'antd';
 import {
   SubmitHandler,
   UnpackNestedValue,
@@ -12,17 +12,22 @@ import { FormInput, FormName } from '../types';
 import AreaSelectRHF from '../parts/AreaSelectRHF';
 import NameInputRHF from '../parts/NameInputRHF';
 import SelectBoxRHF from '../parts/SelectBoxRHF';
-
-const SearchButtonStyle = css({
-  backgroundColor: 'lightblue',
+import { Button,Box } from '@mui/material';
+const SearchButtonStyle = {
+  backgroundColor: '#2557a7',
   color: 'white',
   borderRadius: '0.5rem',
-});
+  fontWeight: '700',
+  padding: '0.75rem 1rem',
+  '&:hover': {
+    backgroundColor: '#164081',
+  },
+};
 
 
 const keywordList = ['お寿司', '焼肉'];
 
-const APIKEY = '37b0bbee8187222f';
+const APIKEY = '';
 const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
 
 type conditionData = {
@@ -45,13 +50,14 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
 
   const search = async (data):Promise<void> => {
-    const query = new URLSearchParams({ ...data, key: APIKEY });
-    // const query = new URLSearchParams(data);
-    const response = await fetch(
-      `${BASEURL}?${query}`,
-    );
-    const obj = await response.json();
-    console.log(obj);
+    // const query = new URLSearchParams({ ...data, key: APIKEY });
+    // const response = await fetch(
+    //   `${BASEURL}?${query}`,
+    // );
+    // const obj = await response.json();
+    // console.log(obj);
+    alert("コンソールにクエリurlを出力")
+    console.log(data)
   };
 
 
@@ -63,7 +69,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
 
   return (
-    <div>
+    <Box sx={{ maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <NameInputRHF
           title='キーワード'
@@ -74,11 +80,10 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
             setValue('keyword', newValue);
           }}
         >
-          <FaGithub />
+          <SearchIcon sx={{width:"18px"}}/>
         </NameInputRHF>
 
-       
-        <Button block={true} htmlType='submit' css={SearchButtonStyle}>
+        <Button type='submit' sx={SearchButtonStyle} fullWidth>
           店舗検索
         </Button>
         <Row align='middle' justify='center'>
@@ -96,7 +101,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
           })}
         </Row>
       </form>
-    </div>
+    </Box>
   );
 };
 

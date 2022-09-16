@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import {TextField,Box} from '@mui/material';
+import {TextField,Box,Typography} from '@mui/material';
 import Autocomplete, { AutocompleteInputChangeReason } from '@mui/material/Autocomplete';
 import { JSX } from '@emotion/react/jsx-runtime';
 import { SyntheticEvent } from 'react';
@@ -44,7 +44,19 @@ const SelectableInput = ({
         padding: '10px',
       }}
     >
-      <div css={css({ marginLeft: '10px' })}>{title}</div>
+      <Typography
+        variant='subtitle2'
+        sx={{
+          marginLeft: '10px',
+
+          paddingRight:"1rem",
+          color: '#2d2d2d',
+          fontSize: '.875rem',
+          fontWeight: '700',
+        }}
+      >
+        {title}
+      </Typography>
       <Autocomplete
         sx={{
           display: 'block',
