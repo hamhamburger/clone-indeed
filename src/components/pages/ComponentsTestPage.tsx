@@ -6,11 +6,15 @@ import { FaGithub } from 'react-icons/fa';
 import areaConditionData from '../../lib/areaConditionData.js';
 
 import genreConditionData from '../../lib/genreConditionData.js';
-
+import specialCategoryConditionData from '../../lib/specialCategoryConditionData';
 
 const keywordList = ['お寿司', '焼肉'];
 
-const conditionSelectData = [areaConditionData,genreConditionData];
+const conditionSelectData = [
+  areaConditionData,
+  genreConditionData,
+  specialCategoryConditionData,
+];
 console.log(areaConditionData);
 const ComponentsTestPage = (): JSX.Element => {
   const [selectValue, setSelectValue] = useState("")
