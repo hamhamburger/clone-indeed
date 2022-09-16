@@ -1,6 +1,8 @@
 import { Controller, Control } from 'react-hook-form';
 import SelectableInput from './SelectableInput';
 import { FormInput } from '../types';
+import { SyntheticEvent } from 'react';
+import { AutocompleteInputChangeReason } from '@mui/material';
 
 type Props = {
   control: Control<FormInput>;
@@ -8,6 +10,11 @@ type Props = {
   placeholder: string;
   options: string[];
   children: JSX.Element;
+  onInputChange?: (
+    event: SyntheticEvent<Element, Event>,
+    value: string,
+    reason: AutocompleteInputChangeReason,
+  ) => void;
 };
 
 const NameInputRHF = ({
@@ -16,6 +23,8 @@ const NameInputRHF = ({
   placeholder,
   options,
   children,
+  onInputChange
+
 }: Props): JSX.Element => {
   return (
     <Controller
@@ -28,6 +37,7 @@ const NameInputRHF = ({
           title={title}
           placeholder={placeholder}
           options={options}
+          onInputChange={onInputChange}
         >
           {children}
         </SelectableInput>

@@ -1,7 +1,8 @@
 import { css } from '@emotion/react';
 import {TextField,Box} from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { AutocompleteInputChangeReason } from '@mui/material/Autocomplete';
 import { JSX } from '@emotion/react/jsx-runtime';
+import { SyntheticEvent } from 'react';
 
 type Props = {
   title: string;
@@ -11,7 +12,12 @@ type Props = {
   onSelect?: () => void;
   onBlur?: () => void;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  field? : any
+  onInputChange?: (
+    event: SyntheticEvent<Element, Event>,
+    value: string,
+    reason: AutocompleteInputChangeReason,
+  ) => void;
+  field?: any;
 };
 
 
@@ -23,7 +29,8 @@ const SelectableInput = ({
   onSelect,
   onBlur,
   onChange,
-  field
+  field,
+  onInputChange
 }: Props): JSX.Element => {
 
 
@@ -45,10 +52,13 @@ const SelectableInput = ({
           height: '30px',
         }}
         freeSolo
+        onInputChange={onInputChange}
         options={options}
         renderInput={(params) => (
           <TextField
-            {...field}
+            name={field.name}
+            ref={field.ref}
+            value={field.value}
             variant='standard'
             sx={{
               border: '0',

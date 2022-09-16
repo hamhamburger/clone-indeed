@@ -1,16 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { css } from '@emotion/react';
 import React from 'react';
-import SelectableInput from '../parts/SelectableInput';
 import { FaGithub } from 'react-icons/fa';
 import { Button, Col, Row} from 'antd';
-import {TextField} from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
 import {
   SubmitHandler,
   UnpackNestedValue,
   useForm,
-  Controller,
 } from 'react-hook-form';
 import { FormInput } from '../types';
 import AreaSelectRHF from '../parts/AreaSelectRHF';
@@ -40,7 +36,7 @@ type Props = {
 
 
 const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
-  const { control, handleSubmit, getValues, setValue } = useForm<FormInput>();
+  const { control, handleSubmit　, setValue } = useForm<FormInput>();
 
   const printWithData = (data: UnpackNestedValue<FormInput>): void => {
     console.log('dataによる取り出し');
@@ -54,46 +50,23 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
 
 
-  //  <NameInputRHF
-  //    title='キーワード'
-  //    placeholder='職種、キーワード、会社名など'
-  //    options={keywordList}
-  //    control={control}
-  //  >
-  //    <FaGithub />
-  //  </NameInputRHF>;
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
+        <NameInputRHF
+          title='キーワード'
+          placeholder='職種、キーワード、会社名など'
+          options={keywordList}
           control={control}
-          name='number'
-          defaultValue={''}
-          render={({ field, fieldState: { error } }) => (
-            <Autocomplete
-              freeSolo
-              disableClearable
-              options={['a', 'b', 'c']}
-              onInputChange={(e, newValue) => {
-                setValue('number', newValue);
-              }}
-              renderInput={(params) => (
-                <TextField
-                  name={field.name}
-                  ref={field.ref}
-                  value={field.value}
-                  {...params}
-                  label='Search input'
-                  InputProps={{
-                    ...params.InputProps,
-                    type: 'search',
-                  }}
-                />
-              )}
-            />
-          )}
-        />
+          onInputChange={(e, newValue) => {
+            setValue('keyword', newValue);
+          }}
+        >
+          <FaGithub />
+        </NameInputRHF>
 
+       
         <Button block={true} htmlType='submit' css={SearchButtonStyle}>
           求人検索
         </Button>
@@ -116,3 +89,36 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 };
 
 export default SearchForm;
+
+
+
+
+// 万が一のためのメモ
+//  <Controller
+//    control={control}
+//    name='number'
+//    defaultValue={''}
+//    render={({ field, fieldState: { error } }) => (
+//      <Autocomplete
+//        freeSolo
+//        disableClearable
+//        options={['a', 'b', 'c']}
+//        onInputChange={(e, newValue) => {
+//          setValue('number', newValue);
+//        }}
+//        renderInput={(params) => (
+//          <TextField
+//            name={field.name}
+//            ref={field.ref}
+//            value={field.value}
+//            {...params}
+//            label='Search input'
+//            InputProps={{
+//              ...params.InputProps,
+//              type: 'search',
+//            }}
+//          />
+//        )}
+//      />
+//    )}
+//  />;
