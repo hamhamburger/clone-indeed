@@ -9,8 +9,8 @@ import {
   useForm,
 } from 'react-hook-form';
 import { FormInput, FormName } from '../types';
-import AreaSelectRHF from '../parts/AreaSelectRHF';
-import NameInputRHF from '../parts/NameInputRHF';
+
+import SelectableInputRHF from '../parts/SelectableInputRHF';
 import SelectBoxRHF from '../parts/SelectBoxRHF';
 import { Button,Box } from '@mui/material';
 const SearchButtonStyle = {
@@ -71,17 +71,30 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
   return (
     <Box sx={{ maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <NameInputRHF
+        <SelectableInputRHF
           title='キーワード'
-          placeholder='店名など'
+          placeholder='住所、駅名、お店ジャンルキャッチ、キャッチ'
           options={keywordList}
           control={control}
+          name="keyword"
           onInputChange={(e, newValue) => {
             setValue('keyword', newValue);
           }}
         >
-          <SearchIcon sx={{width:"18px"}}/>
-        </NameInputRHF>
+          <SearchIcon sx={{ width: '18px' }} />
+        </SelectableInputRHF>
+
+        <SelectableInputRHF
+          title='店名'
+          placeholder='店名'
+          control={control}
+          name="name"
+          onInputChange={(e, newValue) => {
+            setValue('keyword', newValue);
+          }}
+        >
+          <SearchIcon sx={{ width: '18px' }} />
+        </SelectableInputRHF>
 
         <Button type='submit' sx={SearchButtonStyle} fullWidth>
           店舗検索

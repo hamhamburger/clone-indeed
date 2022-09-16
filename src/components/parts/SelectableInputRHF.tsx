@@ -1,6 +1,6 @@
 import { Controller, Control } from 'react-hook-form';
 import SelectableInput from './SelectableInput';
-import { FormInput } from '../types';
+import { FormInput ,FormName} from '../types';
 import { SyntheticEvent } from 'react';
 import { AutocompleteInputChangeReason } from '@mui/material';
 
@@ -10,6 +10,7 @@ type Props = {
   placeholder: string;
   options: string[];
   children: JSX.Element;
+  name: FormName;
   onInputChange?: (
     event: SyntheticEvent<Element, Event>,
     value: string,
@@ -17,7 +18,7 @@ type Props = {
   ) => void;
 };
 
-const NameInputRHF = ({
+const SelectableInputRHF = ({
   control,
   title,
   placeholder,
@@ -29,7 +30,7 @@ const NameInputRHF = ({
   return (
     <Controller
       control={control}
-      name='keyword'
+      name={name}
       defaultValue={''}
       render={({ field, fieldState: { error } }) => (
         <SelectableInput
@@ -46,4 +47,4 @@ const NameInputRHF = ({
   );
 };
 
-export default NameInputRHF;
+export default SelectableInputRHF;
