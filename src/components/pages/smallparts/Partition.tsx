@@ -3,19 +3,21 @@ import { jsx,css } from "@emotion/react"
 
 
 
+
 const Style = css({
-  borderRight: "1px solid",
-  display: "inline",
- 
+  padding: '18px 0 ',
+  textDecoration: 'none',
+  display: 'inline-block',
+  height:"18px"
+});
 
-})
 
-
-const Partition = () => {
+const Partition = ():JSX.Element => {
   return (
-
-    <span css={Style} />
-  )
+    <span css={Style}>
+      <span css={css({ border: 'solid 0.01px #e4e2e0' })}></span>
+    </span>
+  );
 }
 
 export default Partition

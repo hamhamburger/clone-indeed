@@ -9,9 +9,11 @@ import logo from '../../assets/free-logo.svg';
 
 
 const HeaderStyle = css({
-  display: "flex",
-  justifyContent:"space-between"
-})
+  display: 'flex',
+  justifyContent: 'space-between',
+  borderBottom: 'solid 0.0625rem #e4e2e0',
+  
+});
 
 
 const Header = ():JSX.Element => {
@@ -21,7 +23,11 @@ const Header = ():JSX.Element => {
         className='left-section'
         css={css({ display: 'flex', gap: '0 20px' })}
       >
-        <img src={logo} css={css({height:"50px",width:"auto"})} alt="free" />
+        <img
+          src={logo}
+          css={css({ height: '50px', width: 'auto' })}
+          alt='free'
+        />
         <NavLink
           title='求人検索'
           link='https://jp.indeed.com/'
@@ -45,6 +51,7 @@ const Header = ():JSX.Element => {
         <NavLink
           title='ログイン'
           link='https://jp.indeed.com/'
+          spanStyle={css({color:'#2557a7',fontWeight:"700"})}
           selected={false}
         />
         <Partition />
