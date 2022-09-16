@@ -10,7 +10,8 @@ type Props = {
   children: JSX.Element;
   onSelect?: () => void;
   onBlur?: () => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  field? : any
 };
 
 
@@ -22,6 +23,7 @@ const SelectableInput = ({
   onSelect,
   onBlur,
   onChange,
+  field
 }: Props): JSX.Element => {
 
 
@@ -46,6 +48,7 @@ const SelectableInput = ({
         options={options}
         renderInput={(params) => (
           <TextField
+            {...field}
             variant='standard'
             sx={{
               border: '0',
