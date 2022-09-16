@@ -15,8 +15,8 @@ type Props = {
 export default function SelectBox({onChange,value,label,options,name}:Props):JSX.Element {
  
   return (
-    <FormControl sx={{ minWidth: '100px' }}>
-      <InputLabel sx={{ fontSize: '0.9rem', fontWeight: '400',border:0 }}>
+    <FormControl sx={{ minWidth: '100px', maxWidth: '200px' }}>
+      <InputLabel sx={{ fontSize: '0.9rem', fontWeight: '400', border: 0 }}>
         {label}
       </InputLabel>
       <Select
