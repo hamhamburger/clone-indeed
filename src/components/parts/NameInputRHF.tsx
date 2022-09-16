@@ -20,7 +20,7 @@ const NameInputRHF = ({
   return (
     <Controller
       control={control}
-      name='name'
+      name='keyword'
       defaultValue={''}
       rules={{ required: { value: true, message: '入力必須です' } }}
       render={({ field, fieldState: { error } }) => (

@@ -1,4 +1,4 @@
 export type FormInput = {
-  name: string;
-  area:string
+  keyword: string;
+  area: string;
 };

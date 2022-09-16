@@ -1,11 +1,16 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { css } from '@emotion/react';
 import React from 'react';
-import SelectableInput from '../parts/test/SelectableInput';
+import SelectableInput from '../parts/SelectableInput';
 import { FaGithub } from 'react-icons/fa';
 import { Button, Col, Row, Select } from 'antd';
 
-import { SubmitHandler, UnpackNestedValue, useForm, Control } from 'react-hook-form';
+import {
+  SubmitHandler,
+  UnpackNestedValue,
+  useForm,
+  Control,
+} from 'react-hook-form';
 import { FormInput } from '../types';
 import AreaSelectRHF from '../parts/AreaSelectRHF';
 import NameInputRHF from '../parts/NameInputRHF';
@@ -25,8 +30,6 @@ const ConditionSelectStyle = css({
 
 const keywordList = ['お寿司', '焼肉'];
 
-
-
 type conditionData = {
   title: string;
   data: Array<{
@@ -39,32 +42,31 @@ type Props = {
   conditionSelectList: conditionData[];
 };
 
-// SelectableInputは自作なのでクォリティが低い...
+
 const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
+  const { control, handleSubmit, getValues } = useForm<FormInput>();
 
-   const { control, handleSubmit, getValues } = useForm<FormInput>();
+  const printWithData = (data: UnpackNestedValue<FormInput>): void => {
+    console.log('dataによる取り出し');
+    const { keyword, area } = data;
+    console.log(`area ${area}`);
+  };
 
-   const printWithData = (data: UnpackNestedValue<FormInput>): void => {
-     console.log('dataによる取り出し');
-     const { name } = data;
-     console.log(`name ${name}`);
-   };
-  
-      const onSubmit: SubmitHandler<FormInput> = (data) => {
-        printWithData(data);
-      };
-  
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
+    printWithData(data);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <NameInputRHF
+        <SelectableInput
           title='キーワード'
           placeholder='職種、キーワード、会社名など'
           options={keywordList}
-          control={control}
+          onChange={(e) => console.log(e)}
         >
           <FaGithub />
-        </NameInputRHF>
+        </SelectableInput>
 
         <Button block={true} htmlType='submit' css={SearchButtonStyle}>
           求人検索

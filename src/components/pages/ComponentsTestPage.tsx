@@ -24,14 +24,7 @@ const ComponentsTestPage = (): JSX.Element => {
           marginRight: 'auto',
         })}
       />
-        <SelectableInput
-          title='キーワード'
-          placeholder='職種、キーワード、会社名など'
-          options={keywordList}
-          onChange={(e) => console.log(e)}
-        >
-          <FaGithub />
-      </SelectableInput>
+
     </div>
   );
 };
