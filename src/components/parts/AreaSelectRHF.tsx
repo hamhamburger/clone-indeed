@@ -17,12 +17,14 @@ const AreaSelectRHF = ({ control,options,label}: Props): JSX.Element => {
     <Controller
       control={control}
       name='area'
-      defaultValue={''}
+      defaultValue={'SA11'}
       rules={{ required: { value: true, message: '入力必須です' } }}
       render={({ field, fieldState: { error } }) => (
         // const {onChange} = field
         <SelectBox
-          {...field}
+          onChange={field.onChange}
+          value={field.value}
+          name={field.name}
           options={options}
           label={label}
         />
