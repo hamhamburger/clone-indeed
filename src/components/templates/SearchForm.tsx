@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { css } from '@emotion/react';
 import React from 'react';
-import SelectableInput from '../parts/SelectableInput';
+import SelectableInput from '../parts/test/SelectableInput';
 import { FaGithub } from 'react-icons/fa';
 import { Button, Col, Row, Select } from 'antd';
 
@@ -37,7 +37,6 @@ type conditionData = {
 
 type Props = {
   conditionSelectList: conditionData[];
-  handleSubmit: (form:any) => void
 };
 
 // SelectableInputは自作なのでクォリティが低い...
@@ -66,7 +65,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
         >
           <FaGithub />
         </NameInputRHF>
-        
+
         <Button block={true} htmlType='submit' css={SearchButtonStyle}>
           求人検索
         </Button>

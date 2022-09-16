@@ -6,7 +6,7 @@ type Props = {
   title: string;
   placeholder: string;
   children: JSX.Element;
-  valueFromParent?: string;
+  value?: string;
   onSelect?: () => void;
   onBlur?: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -20,7 +20,7 @@ const Style = css({
 const InputWithTitle = ({
   title,
   placeholder,
-  valueFromParent,
+  value: string,
   children,
   onSelect,
   onBlur,
@@ -31,7 +31,7 @@ const InputWithTitle = ({
       <div css={css({ marginLeft: '10px' })}>{title}</div>
       <input
         placeholder={placeholder}
-        value={valueFromParent}
+        value={string}
         css={css({
           border: '0',
           display: 'block',
@@ -47,8 +47,5 @@ const InputWithTitle = ({
     </div>
   );
 };
-
-// このコンポーネント単品でも使えるようにしつつSelectableInputから子コンポーネントとして使われた場合にも値を渡せるようにする設計にするつもりだったが無理だ
-// 親コンポーネントでステート管理される設計にします
 
 export default InputWithTitle;

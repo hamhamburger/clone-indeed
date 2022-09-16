@@ -1,85 +1,69 @@
-// こっちのコンポーネントはUIライブラリなしで作ったものです
-
-import React, { useState, useRef, useEffect } from 'react';
 import { css } from '@emotion/react';
-import InputWithTitle from './InputWithTitle';
+import {TextField,Box} from '@mui/material';
+import Autocomplete from '@mui/material/Autocomplete';
+import { JSX } from '@emotion/react/jsx-runtime';
 
 type Props = {
   title: string;
   placeholder: string;
-  children: JSX.Element;
   options: string[];
+  children: JSX.Element;
+  onSelect?: () => void;
+  onBlur?: () => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Style = css({
-  border: '1px solid',
-  borderRadius: '0.5rem',
-  padding: '10px',
-  position: 'relative',
-});
 
 const SelectableInput = ({
   title,
   placeholder,
-  children,
   options,
+  children,
+  onSelect,
+  onBlur,
   onChange,
 }: Props): JSX.Element => {
-  const [expanded, setExpanded] = useState<boolean>(false);
-  const [value, setValue] = useState<string>('');
-  const insideRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const el = insideRef.current;
-    if (el === undefined) return;
-
-    const handleClickOutside = (e: MouseEvent): void => {
-      if (!(el?.contains(e.target as Node) ?? false)) {
-        setExpanded(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-    // ここの実装は https://hirakublog.com/react-click-outside/を参考にさせていただきました
-  }, [insideRef]);
 
   return (
-    <div css={Style} ref={insideRef}>
-      <InputWithTitle
-        title={title}
-        placeholder={placeholder}
-        onSelect={() => setExpanded(true)}
-        onChange={onChange}
-        valueFromParent={value}
-      >
-        {children}
-      </InputWithTitle>
-      <div className='list' css={css({ position: 'relative', zIndex: '2' })}>
-        {expanded ? (
-          options?.map((value) => {
-            return (
-              <div
-                key={value}
-                css={css({
-                  ':hover': { backgroundColor: 'lightblue' },
-                })}
-                onClick={() => {
-                  setValue(value);
-                  setExpanded(false);
-                }}
-              >
-                {value}
-              </div>
-            );
-          })
-        ) : (
-          <></>
+    <Box
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        border: '1px solid',
+        borderRadius: '0.5rem',
+        padding: '10px',
+      }}
+    >
+      <div css={css({ marginLeft: '10px' })}>{title}</div>
+      <Autocomplete
+        sx={{
+          display: 'block',
+          flex: 'auto',
+          height: '30px',
+        }}
+        freeSolo
+        options={options}
+        renderInput={(params) => (
+          <TextField
+            variant='standard'
+            sx={{
+              border: '0',
+              height: '30px',
+              outline: 'none',
+              '& .MuiInput-root': {
+                '&:before, :after, :hover:not(.Mui-disabled):before': {
+                  borderBottom: 0,
+                },
+              },
+            }}
+            placeholder={placeholder}
+            {...params}
+          />
         )}
-      </div>
-    </div>
+      />
+      {children}
+    </Box>
   );
 };
 

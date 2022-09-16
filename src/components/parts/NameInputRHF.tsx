@@ -1,10 +1,10 @@
 import { Controller, Control } from 'react-hook-form';
-import SelectableInput from './SelectableInput';
+import SelectableInput from './test/SelectableInput';
 import { FormInput } from '../types';
 
 type Props = {
   control: Control<FormInput>;
-   title: string;
+  title: string;
   placeholder: string;
   options: string[];
   children: JSX.Element;
@@ -24,7 +24,7 @@ const NameInputRHF = ({
       defaultValue={''}
       rules={{ required: { value: true, message: '入力必須です' } }}
       render={({ field, fieldState: { error } }) => (
-        // const {onChange} = field
+
         <SelectableInput
           {...field} 
           title={title} 

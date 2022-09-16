@@ -16,7 +16,7 @@ const AreaSelectRHF = ({ control,options,label}: Props): JSX.Element => {
   return (
     <Controller
       control={control}
-      name='name'
+      name='area'
       defaultValue={''}
       rules={{ required: { value: true, message: '入力必須です' } }}
       render={({ field, fieldState: { error } }) => (
