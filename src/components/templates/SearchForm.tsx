@@ -22,6 +22,9 @@ const SearchButtonStyle = css({
 
 const keywordList = ['お寿司', '焼肉'];
 
+const APIKEY = '37b0bbee8187222f';
+const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
+
 type conditionData = {
   title: string;
   name: string;
@@ -36,17 +39,24 @@ type Props = {
 };
 
 
+
 const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
   const { control, handleSubmit, setValue } = useForm<FormInput>();
 
-  const printWithData = (data: UnpackNestedValue<FormInput>): void => {
-    console.log('dataによる取り出し');
-    
-    console.log(data);
+
+  const search = async (data):Promise<void> => {
+    const query = new URLSearchParams({ ...data, key: APIKEY });
+    // const query = new URLSearchParams(data);
+    const response = await fetch(
+      `${BASEURL}?${query}`,
+    );
+    const obj = await response.json();
+    console.log(obj);
   };
 
+
   const onSubmit: SubmitHandler<FormInput> = (data) => {
-    printWithData(data);
+    void search(data)
   };
 
 
@@ -57,7 +67,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <NameInputRHF
           title='キーワード'
-          placeholder='職種、キーワード、会社名など'
+          placeholder='店名など'
           options={keywordList}
           control={control}
           onInputChange={(e, newValue) => {
@@ -69,7 +79,7 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
        
         <Button block={true} htmlType='submit' css={SearchButtonStyle}>
-          求人検索
+          店舗検索
         </Button>
         <Row align='middle' justify='center'>
           {conditionSelectList.map((condition) => {
