@@ -26,8 +26,8 @@ const SearchButtonStyle = {
 
 const keywordList = ['お寿司', '焼肉'];
 
-// const APIKEY = '';
-// const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
+const APIKEY = 'emptyForSecurity';
+const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
 
 type conditionData = {
   title: string;
@@ -55,8 +55,9 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
     // );
     // const obj = await response.json();
     // console.log(obj);
-    alert("コンソールにクエリurlを出力")
-    console.log(data)
+    alert("CORS制限があるためデータの取得はできません！\nただフォームからクエリつきのurlを出力するところまではいってるのであとはnextjsなどサーバサイドで取得してくるだけです！")
+    const query = new URLSearchParams({ ...data, key: APIKEY });
+    alert(`${BASEURL}?${query}`);
   };
 
 
