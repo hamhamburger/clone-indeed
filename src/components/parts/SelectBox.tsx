@@ -23,12 +23,9 @@ export default function SelectBox({onChange,value,label,options,name}:Props):JSX
         variant='filled'
         sx={{
           backgroundColor: '#e4e2e0',
-          '& .MuiInput-root': {
-            '&:before, :after, :hover:not(.Mui-disabled):before': {
-              borderBottom: 0,
-            },
-          },
+          borderRadius:"0.5rem"
         }}
+        disableUnderline={true}
         name={name}
         value={value}
         onChange={onChange}
