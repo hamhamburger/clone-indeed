@@ -26,7 +26,10 @@ const ShopCard = ({
 }: Props): JSX.Element => {
   return (
     <Box
+      component="a"
+      href={url}
       sx={{
+        display:"block",
         border: '1px solid #d4d2d0',
         padding: '20px',
         borderRadius: '0.4rem',
@@ -56,6 +59,7 @@ const ShopCard = ({
       <Box sx={{ display: 'flex', gap: '10px' }}>
         {tags.map((tag) => (
           <Box
+            onClick={() => alert("未実装！")}
             key={tag}
             sx={{
               border: '1px solid #d4d2d0',
@@ -64,6 +68,7 @@ const ShopCard = ({
               lineHeight: '1.5rem',
               padding: '5px',
               borderRadius: '0.2rem',
+              color:"black"
             }}
           >
             {tag}
