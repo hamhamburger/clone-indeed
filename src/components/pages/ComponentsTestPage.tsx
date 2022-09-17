@@ -8,10 +8,9 @@ import genreConditionData from '../../lib/genreConditionData.js';
 import specialCategoryConditionData from '../../lib/specialCategoryConditionData';
 import shopData from '../../lib/shopData';
 
-import InfoCard from '../parts/infoCard';
 import { JSX } from '@emotion/react/jsx-runtime';
 import ShopCard from '../parts/ShopCard';
-
+import { Box } from '@mui/material';
 
 const conditionSelectData = [
   areaConditionData,
@@ -32,21 +31,32 @@ const ComponentsTestPage = (): JSX.Element => {
           marginRight: 'auto',
         })}
       />
-      {shopData.map(
-        (
-          shop: JSX.IntrinsicAttributes & {
-            title: string;
-            area: string;
-            genre: string;
-            subgenre: string;
-            budget: string;
-            catchword: string;
-            tags: string[];
-          },
-        ) => (
-          <ShopCard key={shop.title} {...shop} />
-        ),
-      )}
+      <Box
+        sx={{
+          display: 'grid',
+          rowGap: '15px',
+          maxWidth: '500px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginTop:"50px"
+        }}
+      >
+        {shopData.map(
+          (
+            shop: JSX.IntrinsicAttributes & {
+              title: string;
+              area: string;
+              genre: string;
+              subgenre: string;
+              budget: string;
+              catchword: string;
+              tags: string[];
+            },
+          ) => (
+            <ShopCard key={shop.title} {...shop} />
+          ),
+        )}
+      </Box>
     </div>
   );
 };

@@ -25,88 +25,89 @@ const ShopCard = ({
   url
 }: Props): JSX.Element => {
   return (
-    <Box
-      component="a"
-      href={url}
-      sx={{
-        display:"block",
-        border: '1px solid #d4d2d0',
-        padding: '20px',
-        borderRadius: '0.4rem',
-      }}
-    >
-      <Typography
-        variant='h2'
+      <Box
         sx={{
-          fontSize: '1.125rem',
-          lineHeight: '1.5rem',
-          fontWeight: '600',
-          letterSpacing: '-0.06px',
+          display: 'grid',
+          rowGap: '15px',
+          border: '1px solid #d4d2d0',
+          padding: '20px',
+          borderRadius: '0.4rem',
         }}
+        component='a'
+        href={url}
       >
-        {title}
-      </Typography>
-      <Typography
-        variant='h2'
-        sx={{
-          fontSize: '1rem',
-          lineHeight: '1.5rem',
-          letterSpacing: '-0.06px',
-        }}
-      >
-        {area}
-      </Typography>
-      <Box sx={{ display: 'flex', gap: '10px' }}>
-        {tags.map((tag) => (
-          <Box
-            onClick={() => alert("未実装！")}
-            key={tag}
+        <Typography
+          variant='h2'
+          sx={{
+            fontSize: '1.125rem',
+            lineHeight: '1.5rem',
+            fontWeight: '600',
+            letterSpacing: '-0.06px',
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          variant='h2'
+          sx={{
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            letterSpacing: '-0.06px',
+          }}
+        >
+          {area}
+        </Typography>
+        <Box sx={{ display: 'flex', gap: '10px' }}>
+          {tags.map((tag) => (
+            <Box
+              onClick={() => alert('未実装！')}
+              key={tag}
+              sx={{
+                border: '1px solid #d4d2d0',
+                fontSize: '0.85rem',
+                fontWeight: '600',
+                lineHeight: '1.5rem',
+                padding: '5px',
+                borderRadius: '0.2rem',
+                color: 'black',
+              }}
+            >
+              {tag}
+            </Box>
+          ))}
+          <Typography
+            variant='h2'
             sx={{
-              border: '1px solid #d4d2d0',
               fontSize: '0.85rem',
               fontWeight: '600',
               lineHeight: '1.5rem',
               padding: '5px',
               borderRadius: '0.2rem',
-              color:"black"
             }}
-          >
-            {tag}
-          </Box>
-        ))}
+          ></Typography>
+        </Box>
         <Typography
           variant='h2'
           sx={{
-            fontSize: '0.85rem',
+            fontSize: '1rem',
             fontWeight: '600',
             lineHeight: '1.5rem',
-            padding: '5px',
-            borderRadius: '0.2rem',
           }}
-        ></Typography>
+        >
+          {budget}
+        </Typography>
+        <Typography
+          variant='h2'
+          sx={{
+            fontSize: '1rem',
+            lineHeight: '1.5rem',
+            letterSpacing: '-0.06px',
+            color: '#6f6f6f',
+          }}
+        >
+          {catchword}
+        </Typography>
       </Box>
-      <Typography
-        variant='h2'
-        sx={{
-          fontSize: '1rem',
-          fontWeight: '600',
-          lineHeight: '1.5rem',
-        }}
-      >
-        {budget}
-      </Typography>
-      <Typography
-        variant='h2'
-        sx={{
-          fontSize: '1rem',
-          lineHeight: '1.5rem',
-          letterSpacing: '-0.06px',
-          color: '#6f6f6f',
-        }}
-      >
-        {catchword}
-      </Typography>
-    </Box>
   );
 };
 

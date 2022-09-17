@@ -69,15 +69,22 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
 
   return (
-   
     <form onSubmit={handleSubmit(onSubmit)}>
-       <Box  sx={{ maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' ,display: "grid",rowGap:"15px"}}>
+      <Box
+        sx={{
+          maxWidth: '700px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          display: 'grid',
+          rowGap: '15px',
+        }}
+      >
         <SelectableInputRHF
           title='キーワード'
           placeholder='住所、駅名、お店ジャンルキャッチ、キャッチ'
           options={keywordList}
           control={control}
-          name="keyword"
+          name='keyword'
           onInputChange={(e, newValue) => {
             setValue('keyword', newValue);
           }}
@@ -89,17 +96,13 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
           title='店名'
           placeholder='店名'
           control={control}
-          name="name"
+          name='name'
           onInputChange={(e, newValue) => {
             setValue('name', newValue);
           }}
         >
           <SearchIcon sx={{ width: '18px' }} />
         </SelectableInputRHF>
-
-        <Button type='submit' sx={SearchButtonStyle} fullWidth>
-          店舗検索
-        </Button>
         <Row align='middle' justify='center'>
           {conditionSelectList.map((condition) => {
             return (
@@ -114,9 +117,11 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
             );
           })}
         </Row>
-        </Box>
-      </form>
-  
+        <Button type='submit' sx={SearchButtonStyle} fullWidth>
+          店舗検索
+        </Button>
+      </Box>
+    </form>
   );
 };
 
