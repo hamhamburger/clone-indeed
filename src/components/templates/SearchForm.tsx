@@ -26,8 +26,8 @@ const SearchButtonStyle = {
 
 const keywordList = ['お寿司', '焼肉'];
 
-// const APIKEY = '';
-// const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
+const APIKEY = 'emptyForSecurity';
+const BASEURL = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/';
 
 type conditionData = {
   title: string;
@@ -55,8 +55,9 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
     // );
     // const obj = await response.json();
     // console.log(obj);
-    alert("コンソールにクエリurlを出力")
-    console.log(data)
+    alert("CORS制限があるためデータの取得はできません！\nただフォームからクエリつきのurlを出力するところまではいってるのであとはnextjsなどサーバサイドで取得してくるだけです！")
+    const query = new URLSearchParams({ ...data, key: APIKEY });
+    alert(`${BASEURL}?${query}`);
   };
 
 
@@ -68,15 +69,22 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
 
 
   return (
-   
     <form onSubmit={handleSubmit(onSubmit)}>
-       <Box  sx={{ maxWidth: '700px', marginLeft: 'auto', marginRight: 'auto' ,display: "grid",rowGap:"15px"}}>
+      <Box
+        sx={{
+          maxWidth: '700px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          display: 'grid',
+          rowGap: '15px',
+        }}
+      >
         <SelectableInputRHF
           title='キーワード'
           placeholder='住所、駅名、お店ジャンルキャッチ、キャッチ'
           options={keywordList}
           control={control}
-          name="keyword"
+          name='keyword'
           onInputChange={(e, newValue) => {
             setValue('keyword', newValue);
           }}
@@ -88,17 +96,13 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
           title='店名'
           placeholder='店名'
           control={control}
-          name="name"
+          name='name'
           onInputChange={(e, newValue) => {
             setValue('name', newValue);
           }}
         >
           <SearchIcon sx={{ width: '18px' }} />
         </SelectableInputRHF>
-
-        <Button type='submit' sx={SearchButtonStyle} fullWidth>
-          店舗検索
-        </Button>
         <Row align='middle' justify='center'>
           {conditionSelectList.map((condition) => {
             return (
@@ -113,9 +117,11 @@ const SearchForm = ({ conditionSelectList }: Props): JSX.Element => {
             );
           })}
         </Row>
-        </Box>
-      </form>
-  
+        <Button type='submit' sx={SearchButtonStyle} fullWidth>
+          店舗検索
+        </Button>
+      </Box>
+    </form>
   );
 };
 

@@ -1,14 +1,18 @@
+// @ts-nocheck
+
 import { css } from '@emotion/react';
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Header from '../parts/Header';
 import SearchForm from '../templates/SearchForm';
-import { FaGithub } from 'react-icons/fa';
-import areaConditionData from '../../lib/areaConditionData.js';
 
+import areaConditionData from '../../lib/areaConditionData.js';
 import genreConditionData from '../../lib/genreConditionData.js';
 import specialCategoryConditionData from '../../lib/specialCategoryConditionData';
+import shopData from '../../lib/shopData';
 
-const keywordList = ['お寿司', '焼肉'];
+import { JSX } from '@emotion/react/jsx-runtime';
+import ShopCard from '../parts/ShopCard';
+import { Box } from '@mui/material';
 
 const conditionSelectData = [
   areaConditionData,
@@ -17,7 +21,7 @@ const conditionSelectData = [
 ];
 console.log(areaConditionData);
 const ComponentsTestPage = (): JSX.Element => {
-  const [selectValue, setSelectValue] = useState("")
+  const [selectValue, setSelectValue] = useState('');
   return (
     <div>
       <Header />
@@ -29,7 +33,34 @@ const ComponentsTestPage = (): JSX.Element => {
           marginRight: 'auto',
         })}
       />
-
+      <Box
+        sx={{
+          display: 'grid',
+          rowGap: '15px',
+          maxWidth: '500px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          marginTop: '50px',
+        }}
+      >
+        {shopData.map(
+          (
+            shop: JSX.IntrinsicAttributes & {
+              id: string;
+              title: string;
+              area: string;
+              genre: string;
+              subgenre: string;
+              budget: string;
+              catchword: string;
+              tags: string[];
+              url: string;
+            },
+          ) => (
+            <ShopCard key={shop.title} {...shop} />
+          ),
+        )}
+      </Box>
     </div>
   );
 };

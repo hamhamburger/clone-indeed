@@ -8,11 +8,10 @@ const Style = css({
   textDecoration: 'none',
   display: 'inline-block',
   color: 'black',
-  margin: '3px',
-  fontSize:"0.85rem",
+  borderBottom: '3px solid white',
+  fontSize: '0.85rem',
   ':hover': {
     borderBottom: '3px solid blue',
-    margin: '0px',
   },
 });
 

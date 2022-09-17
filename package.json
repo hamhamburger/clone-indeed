@@ -9,8 +9,11 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src/",
     "lint:fix": "npm run lint -- --fix",
-    "format": "npm run lint:fix && prettier --write 'src/**/*.{js,jsx,ts,tsx}'"
+    "format": "npm run lint:fix && prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://hamhamburger.github.io/clone-indeed/",
   "dependencies": {
     "@emotion/babel-plugin": "^11.10.2",
     "@emotion/react": "^11.10.4",
@@ -39,6 +42,7 @@
     "eslint-plugin-react": "^7.31.6",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^4.0.0",
     "prettier": "^2.7.1",
     "typescript": "*",
     "vite": "^3.1.0",
