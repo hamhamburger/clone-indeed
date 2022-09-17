@@ -1,9 +1,11 @@
+// @ts-nocheck
+
 import { css } from '@emotion/react';
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Header from '../parts/Header';
 import SearchForm from '../templates/SearchForm';
-import areaConditionData from '../../lib/areaConditionData.js';
 
+import areaConditionData from '../../lib/areaConditionData.js';
 import genreConditionData from '../../lib/genreConditionData.js';
 import specialCategoryConditionData from '../../lib/specialCategoryConditionData';
 import shopData from '../../lib/shopData';
@@ -19,7 +21,7 @@ const conditionSelectData = [
 ];
 console.log(areaConditionData);
 const ComponentsTestPage = (): JSX.Element => {
-  const [selectValue, setSelectValue] = useState("")
+  const [selectValue, setSelectValue] = useState('');
   return (
     <div>
       <Header />
@@ -38,12 +40,13 @@ const ComponentsTestPage = (): JSX.Element => {
           maxWidth: '500px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          marginTop:"50px"
+          marginTop: '50px',
         }}
       >
         {shopData.map(
           (
             shop: JSX.IntrinsicAttributes & {
+              id: string;
               title: string;
               area: string;
               genre: string;
@@ -51,6 +54,7 @@ const ComponentsTestPage = (): JSX.Element => {
               budget: string;
               catchword: string;
               tags: string[];
+              url: string;
             },
           ) => (
             <ShopCard key={shop.title} {...shop} />
@@ -60,8 +64,5 @@ const ComponentsTestPage = (): JSX.Element => {
     </div>
   );
 };
-
-
-      
 
 export default ComponentsTestPage;
