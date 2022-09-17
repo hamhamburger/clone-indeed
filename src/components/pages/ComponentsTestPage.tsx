@@ -2,13 +2,16 @@ import { css } from '@emotion/react';
 import React,{useState} from 'react';
 import Header from '../parts/Header';
 import SearchForm from '../templates/SearchForm';
-import { FaGithub } from 'react-icons/fa';
 import areaConditionData from '../../lib/areaConditionData.js';
 
 import genreConditionData from '../../lib/genreConditionData.js';
 import specialCategoryConditionData from '../../lib/specialCategoryConditionData';
+import shopData from '../../lib/shopData';
 
-const keywordList = ['お寿司', '焼肉'];
+import InfoCard from '../parts/infoCard';
+import { JSX } from '@emotion/react/jsx-runtime';
+import ShopCard from '../parts/ShopCard';
+
 
 const conditionSelectData = [
   areaConditionData,
@@ -29,9 +32,26 @@ const ComponentsTestPage = (): JSX.Element => {
           marginRight: 'auto',
         })}
       />
-
+      {shopData.map(
+        (
+          shop: JSX.IntrinsicAttributes & {
+            title: string;
+            area: string;
+            genre: string;
+            subgenre: string;
+            budget: string;
+            catchword: string;
+            tags: string[];
+          },
+        ) => (
+          <ShopCard key={shop.title} {...shop} />
+        ),
+      )}
     </div>
   );
 };
+
+
+      
 
 export default ComponentsTestPage;
